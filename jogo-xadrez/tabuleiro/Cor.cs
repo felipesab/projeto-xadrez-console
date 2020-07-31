@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace jogo_xadrez.tabuleiro
+namespace tabuleiro
 {
-    public enum Cor
-    {
-        Branco,
-        Preto,
-        Cinza,
-        Vermelho,
-        Azul,
-        Amarelo,
-        Verde
-    }
+  public enum Cor
+  {
+    Branco,
+    Preto,
+    Cinza,
+    Vermelho,
+    Azul,
+    Amarelo,
+    Verde
+  }
 }
