@@ -11,12 +11,21 @@ namespace jogo_xadrez
     {
       try
       {
-        Tabuleiro tab = new Tabuleiro(8, 8);
+        PartidaXadrez match = new PartidaXadrez();
 
-        tab.ColocarPeca(new Rei(Cor.Preto, tab), new Posicao(0, 0));
-        tab.ColocarPeca(new Torre(Cor.Branco, tab), new Posicao(7, 7));
+        while (!match.Terminada)
+        {
+          Console.Clear();
+          Tela.ImprimirTabuleiro(match.Tab);
 
-        Tela.ImprimirTabuleiro(tab);
+          Console.Write("Origem: ");
+          Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
+
+          Console.Write("Destino: ");
+          Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
+
+          match.ExecutaMovimento(origem, destino);
+        }
       }
       catch(Exception ex)
       {
