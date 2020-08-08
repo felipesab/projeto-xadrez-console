@@ -21,6 +21,9 @@ namespace jogo_xadrez
           Console.Write("Origem: ");
           Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
 
+          Console.Clear();
+          bool[,] mat = match.Tab.Peca(origem).MovimentosPossiveis();
+          Tela.ImprimirTabuleiro(match.Tab, mat);
           Console.Write("Destino: ");
           Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
 

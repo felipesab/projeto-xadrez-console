@@ -17,15 +17,32 @@ namespace jogo_xadrez
 
         for (int j = 0; j < tab.Colunas; j++)
         {
-          if (tab.Peca(i, j) == null)
-          {
-            Console.Write("- ");
-          }
-          else
-          {
-            ImprimirPeca(tab.Peca(i, j));
-            Console.Write(" ");
-          }
+          ImprimirPeca(tab.Peca(i, j));
+        }
+
+        Console.WriteLine();
+      }
+
+      Console.WriteLine("  A B C D E F G H");
+    }
+
+    public static void ImprimirTabuleiro(Tabuleiro tab, bool[,] possicoesPossiveis)
+    {
+      for (int i = 0; i < tab.Linhas; i++)
+      {
+        Console.Write(8 - i);
+        Console.Write(" ");
+
+        for (int j = 0; j < tab.Colunas; j++)
+        {
+          ConsoleColor corOriginal = Console.BackgroundColor;
+          ConsoleColor possicaoDestacada = ConsoleColor.DarkGray;
+
+          if (possicoesPossiveis[i, j] == true)
+            Console.BackgroundColor = possicaoDestacada;
+
+          ImprimirPeca(tab.Peca(i, j));
+          Console.BackgroundColor = corOriginal;
         }
 
         Console.WriteLine();
@@ -45,16 +62,25 @@ namespace jogo_xadrez
 
     public static void ImprimirPeca(Peca peca)
     {
-      if(peca.Cor == Cor.Branco)
+      if (peca == null)
       {
-        Console.Write(peca);
+        Console.Write("- ");
       }
-      else if(peca.Cor == Cor.Preto)
+      else
       {
-        ConsoleColor aux = Console.ForegroundColor;
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.Write(peca);
-        Console.ForegroundColor = aux;
+        if (peca.Cor == Cor.Branco)
+        {
+          Console.Write(peca);
+        }
+        else if (peca.Cor == Cor.Preto)
+        {
+          ConsoleColor aux = Console.ForegroundColor;
+          Console.ForegroundColor = ConsoleColor.Yellow;
+          Console.Write(peca);
+          Console.ForegroundColor = aux;
+        }
+
+        Console.Write(" ");
       }
     }
   }

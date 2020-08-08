@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace tabuleiro
@@ -15,6 +16,12 @@ namespace tabuleiro
     }
 
     public Posicao(int linha, int coluna)
+    {
+      Linha = linha;
+      Coluna = coluna;
+    }
+
+    public void DefinirValores(int linha, int coluna)
     {
       Linha = linha;
       Coluna = coluna;
