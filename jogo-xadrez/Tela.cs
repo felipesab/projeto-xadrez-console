@@ -3,6 +3,7 @@ using System;
 using xadrez;
 using System.Collections.Generic;
 using System.Text;
+using jogo_xadrez.xadrez;
 
 namespace jogo_xadrez
 {

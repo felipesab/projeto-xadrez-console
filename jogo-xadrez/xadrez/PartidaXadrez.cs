@@ -9,14 +9,14 @@ namespace jogo_xadrez.xadrez
   class PartidaXadrez
   {
     public Tabuleiro Tab { get; private set; }
-    private int turno;
-    private Cor jogadorAtual;
+    public int Turno { get; private set; }
+    public Cor JogadorAtual { get; private set; }
     public Boolean Terminada { get; private set; }
     public PartidaXadrez()
     {
       Tab = new Tabuleiro(8, 8);
-      turno = 1;
-      jogadorAtual = Cor.Branco;
+      Turno = 1;
+      JogadorAtual = Cor.Branco;
       ColocarPecas();
       Terminada = false;
     }
@@ -28,6 +28,48 @@ namespace jogo_xadrez.xadrez
       Tab.ColocarPeca(p, destino);
       p.IncrementarMovimento();
     }
+
+    public void RealizaJogada(Posicao origem, Posicao destino)
+    {
+      ExecutaMovimento(origem, destino);
+      Turno++;
+      MudarJogador();
+    }
+
+    private void MudarJogador()
+    {
+      if (JogadorAtual == Cor.Preto)
+        JogadorAtual = Cor.Branco;
+      else
+        JogadorAtual = Cor.Preto;
+    }
+
+    public void ValidarOrigem(Posicao pos)
+    {
+      if (Tab.Peca(pos) == null)
+      {
+        throw new TabuleiroException("Não existe peça nessa posição!");
+      }
+
+      if (Tab.Peca(pos).Cor != JogadorAtual)
+      {
+        throw new TabuleiroException("Está peça pertence ao outro jogador, escolha uma de suas peças para realizar uma jogada!");
+      }
+
+      if (!Tab.Peca(pos).ExisteMovimentosPossiveis())
+      {
+        throw new TabuleiroException("Não existe movimentos possíveis para essa peça!");
+      }
+    }
+
+    public void ValidarDestino(Posicao origem, Posicao destino)
+    {
+      if (!Tab.Peca(origem).PodeMoverPara(destino))
+      {
+        throw new TabuleiroException("Posição de destino inválida para esta peça!");
+      }
+    }
+
 
     public void ColocarPecas()
     {
