@@ -2,6 +2,7 @@
 using System;
 using xadrez;
 using jogo_xadrez.xadrez;
+using System.Collections.Generic;
 
 namespace jogo_xadrez
 {
@@ -16,13 +17,8 @@ namespace jogo_xadrez
       {
         try
         {
-          Console.Clear();
-          Tela.ImprimirTabuleiro(match.Tab);
+          Tela.ImprimirPartida(match);
 
-          Console.WriteLine();
-          Console.WriteLine($"Turno {match.Turno}");
-          Console.WriteLine($"Aguardando jogada - {match.JogadorAtual}");
-          Console.WriteLine();
           Console.Write("Origem: ");
           Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
           match.ValidarOrigem(origem);

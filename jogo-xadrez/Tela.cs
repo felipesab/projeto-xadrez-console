@@ -4,6 +4,7 @@ using xadrez;
 using System.Collections.Generic;
 using System.Text;
 using jogo_xadrez.xadrez;
+using System.Text.RegularExpressions;
 
 namespace jogo_xadrez
 {
@@ -25,6 +26,40 @@ namespace jogo_xadrez
       }
 
       Console.WriteLine("  A B C D E F G H");
+    }
+
+    public static void ImprimirPartida(PartidaXadrez match)
+    {
+      Console.Clear();
+      ImprimirTabuleiro(match.Tab);
+      ImprimirCapturadas(match);
+
+      Console.WriteLine();
+      Console.WriteLine($"Turno {match.Turno}");
+      Console.WriteLine($"Aguardando jogada - {match.JogadorAtual}");
+      Console.WriteLine();
+    }
+
+    public static void ImprimirCapturadas(PartidaXadrez match)
+    {
+      Console.WriteLine();
+      Console.WriteLine("Peças capturadas:");
+      Console.Write("Brancas: [");
+      ImprimirConjuntoPecas(match.PecasCapturadas(Cor.Branco));
+      Console.WriteLine("]");
+
+      Console.Write("Pretas: [");
+      ImprimirConjuntoPecas(match.PecasCapturadas(Cor.Preto));
+      Console.WriteLine("]");
+
+    }
+
+    public static void ImprimirConjuntoPecas(HashSet<Peca> pecas)
+    {
+      foreach(Peca x in pecas)
+      {
+        Console.Write(x + " ");
+      }
     }
 
     public static void ImprimirTabuleiro(Tabuleiro tab, bool[,] possicoesPossiveis)
