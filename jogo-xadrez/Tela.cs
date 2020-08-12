@@ -36,11 +36,20 @@ namespace jogo_xadrez
 
       Console.WriteLine();
       Console.WriteLine($"Turno {match.Turno}");
-      Console.WriteLine($"Aguardando jogada - {match.JogadorAtual}");
-      Console.WriteLine();
 
-      if (match.Xeque)
-        Console.WriteLine("XEQUE!");
+      if (!match.Terminada)
+      {
+        Console.WriteLine($"Aguardando jogada - {match.JogadorAtual}");
+        Console.WriteLine();
+        if (match.Xeque)
+          Console.WriteLine("XEQUE!");
+      }
+      else
+      {
+        Console.WriteLine("XEQUEMATE!");
+        Console.WriteLine($"VENCEDOR: {match.JogadorAtual}");
+      }
+
     }
 
     public static void ImprimirCapturadas(PartidaXadrez match)
@@ -59,7 +68,7 @@ namespace jogo_xadrez
 
     public static void ImprimirConjuntoPecas(HashSet<Peca> pecas)
     {
-      foreach(Peca x in pecas)
+      foreach (Peca x in pecas)
       {
         Console.Write(x + " ");
       }

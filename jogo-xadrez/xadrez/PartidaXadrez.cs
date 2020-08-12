@@ -87,8 +87,14 @@ namespace jogo_xadrez.xadrez
       else
         Xeque = false;
 
-      Turno++;
-      MudarJogador();
+      if (EstaEmXequeMate(PecaAdversaria(JogadorAtual)))
+        Terminada = true;
+      else
+      {
+        Turno++;
+        MudarJogador();
+      }
+
     }
 
     private void DesfazerMovimento(Posicao origem, Posicao destino, Peca capturada)
@@ -147,6 +153,34 @@ namespace jogo_xadrez.xadrez
       }
 
       return false;
+    }
+
+    public bool EstaEmXequeMate(Cor cor)
+    {
+      if (!EstaEmXeque(cor))
+        return false;
+
+      foreach (Peca x in PecasEmJogo(cor))
+      {
+        bool[,] mat = x.MovimentosPossiveis();
+
+        for (int i = 0; i < Tab.Linhas; i++)
+        {
+          for (int j = 0; j < Tab.Colunas; j++)
+          {
+            Posicao destino = new Posicao(i, j);
+            Posicao origem = x.Posicao;
+            Peca p = ExecutaMovimento(origem, destino);
+
+            if (!EstaEmXeque(cor))
+              return false;
+
+            DesfazerMovimento(origem, destino, p);
+          }
+        }
+      }
+
+      return true;
     }
 
     public void ValidarOrigem(Posicao pos)
