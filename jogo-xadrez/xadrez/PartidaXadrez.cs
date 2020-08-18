@@ -171,11 +171,11 @@ namespace jogo_xadrez.xadrez
             Posicao destino = new Posicao(i, j);
             Posicao origem = x.Posicao;
             Peca p = ExecutaMovimento(origem, destino);
-
-            if (!EstaEmXeque(cor))
-              return false;
-
+            bool testeXeque = EstaEmXeque(cor);
             DesfazerMovimento(origem, destino, p);
+
+            if (!testeXeque)
+              return false;
           }
         }
       }
@@ -218,18 +218,38 @@ namespace jogo_xadrez.xadrez
     public void ColocarPecas()
     {
       AdicionarPeca('d', 1, new Rei(Cor.Branco, Tab));
-      AdicionarPeca('c', 1, new Torre(Cor.Branco, Tab));
-      AdicionarPeca('c', 2, new Torre(Cor.Branco, Tab));
-      AdicionarPeca('d', 2, new Torre(Cor.Branco, Tab));
-      AdicionarPeca('e', 1, new Torre(Cor.Branco, Tab));
-      AdicionarPeca('e', 2, new Torre(Cor.Branco, Tab));
+      AdicionarPeca('e', 1, new Rainha(Cor.Branco, Tab));
+      AdicionarPeca('a', 1, new Torre(Cor.Branco, Tab));
+      AdicionarPeca('h', 1, new Torre(Cor.Branco, Tab));
+      AdicionarPeca('c', 1, new Bispo(Cor.Branco, Tab));
+      AdicionarPeca('f', 1, new Bispo(Cor.Branco, Tab));
+      AdicionarPeca('b', 1, new Cavalo(Cor.Branco, Tab));
+      AdicionarPeca('g', 1, new Cavalo(Cor.Branco, Tab));
+      AdicionarPeca('a', 2, new Peao(Cor.Branco, Tab));
+      AdicionarPeca('b', 2, new Peao(Cor.Branco, Tab));
+      AdicionarPeca('c', 2, new Peao(Cor.Branco, Tab));
+      AdicionarPeca('d', 2, new Peao(Cor.Branco, Tab));
+      AdicionarPeca('e', 2, new Peao(Cor.Branco, Tab));
+      AdicionarPeca('f', 2, new Peao(Cor.Branco, Tab));
+      AdicionarPeca('g', 2, new Peao(Cor.Branco, Tab));
+      AdicionarPeca('h', 2, new Peao(Cor.Branco, Tab));
 
       AdicionarPeca('d', 8, new Rei(Cor.Preto, Tab));
-      AdicionarPeca('c', 7, new Torre(Cor.Preto, Tab));
-      AdicionarPeca('c', 8, new Torre(Cor.Preto, Tab));
-      AdicionarPeca('d', 7, new Torre(Cor.Preto, Tab));
-      AdicionarPeca('e', 8, new Torre(Cor.Preto, Tab));
-      AdicionarPeca('e', 7, new Torre(Cor.Preto, Tab));
+      AdicionarPeca('e', 8, new Rainha(Cor.Preto, Tab));
+      AdicionarPeca('a', 8, new Torre(Cor.Preto, Tab));
+      AdicionarPeca('h', 8, new Torre(Cor.Preto, Tab));
+      AdicionarPeca('c', 8, new Bispo(Cor.Preto, Tab));
+      AdicionarPeca('f', 8, new Bispo(Cor.Preto, Tab));
+      AdicionarPeca('b', 8, new Cavalo(Cor.Preto, Tab));
+      AdicionarPeca('g', 8, new Cavalo(Cor.Preto, Tab));
+      AdicionarPeca('a', 7, new Peao(Cor.Preto, Tab));
+      AdicionarPeca('b', 7, new Peao(Cor.Preto, Tab));
+      AdicionarPeca('c', 7, new Peao(Cor.Preto, Tab));
+      AdicionarPeca('d', 7, new Peao(Cor.Preto, Tab));
+      AdicionarPeca('e', 7, new Peao(Cor.Preto, Tab));
+      AdicionarPeca('f', 7, new Peao(Cor.Preto, Tab));
+      AdicionarPeca('g', 7, new Peao(Cor.Preto, Tab));
+      AdicionarPeca('h', 7, new Peao(Cor.Preto, Tab));
     }
   }
 }
