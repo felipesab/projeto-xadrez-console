@@ -42,7 +42,7 @@ namespace jogo_xadrez
         Console.WriteLine($"Aguardando jogada - {match.JogadorAtual}");
         Console.WriteLine();
         if (match.Xeque)
-          Console.WriteLine("XEQUE!");
+          Console.WriteLine("VOCE ESTA EM XEQUE!");
       }
       else
       {
